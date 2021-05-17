@@ -1,0 +1,456 @@
+html{
+    font-size: 62.5%;
+}
+
+/*sassにおけるrem指定*/
+@mixin rem($size) {
+    font-size: $size+px;
+    font-size: ($size/10)+rem;
+    
+}
+body{
+    @include rem(16);
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+img.svg{
+    width: 100%;
+    vertical-align: bottom;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+$main_color:"#33333";
+
+
+.container{
+    width: 1100px;
+    padding:0 30px;
+    margin: 0 auto;
+}
+
+h2{
+    display: block;
+    @include rem(32);
+    font-weight: bold;
+    color:$main_color;
+}
+
+.bg--gray{
+    background-color: #F0F0F0;
+}
+
+
+
+header {
+
+    h1{
+        position: fixed;
+        top: 31px;
+        left: 4vw;
+        z-index: 2;
+        width: 260px;
+            img{
+                z-index: 4;
+            }
+        
+    }
+
+    .burger-btn {
+        display: flex;
+        position: fixed;
+        align-items: center;
+        top: 36px;
+        right: 4vw;
+        z-index: 3;
+    }
+}
+
+.black{
+    background-color: #333333 !important;
+    
+}
+
+.font-black{
+    color: #333333 !important;
+}
+
+
+/*ハンバーガーボタン*/
+.bar {
+    display: block;
+    background-color:#FFFFFF;
+    height: 2px;
+    width: 22px;
+    border-radius: 1px;
+}
+
+.menu{
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px;
+    margin-left: 7px;
+}
+
+.bar--top{
+    transform: translateY(-4px);
+    transition: .4s;
+
+    }
+.bar--bottom{
+    transform: translateY(4px);
+    transition: .4s;
+    }
+
+/*ハンバーガーボタンを押した時の付加クラス*/
+/*translateが2px指定なのは、おそらくbarのheightが2pxな為*/
+ .close{
+   .bar--top{
+       transform:translateY(2px) rotate(-210deg);
+   }
+
+   .bar--mid {
+       opacity: 0;
+   }
+
+   .bar--bottom {
+       transform:translateY(-2px) rotate(210deg);
+   }
+}
+
+/*背景が暗くなる記述*/
+/*display:none;とfadeToggleの使い方*/
+.burger-musk {  
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0,.5);
+    z-index: 2;    
+}
+
+
+nav{
+        display: block;
+        width: 36.1vw;
+        height: 100vh;
+        background-color: #222222;
+        z-index: 2;
+        position: fixed;
+        top: 0;
+        right: 0;
+        opacity: 0.9;   
+        text-align: center;
+        transform: translateX(100%);
+        transition: 0.3s;
+        
+
+        .nav-list{
+            display: inline-block;
+            width: 120px;
+            margin: 180px auto;
+
+            /*要確認*/
+            &__image{
+                width: 42.15px;
+                margin: 0 auto 20px;
+            }
+
+            &__item{
+                margin-top: 20px;
+                color: #fff;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }        
+    }
+ 
+    .slide-in {
+        transform: translateX(0);
+        transition: 0.3s;
+    }
+
+    .nonscroll {
+        overflow: hidden;
+    }
+    
+
+    .fv{
+        height: 63vh;
+
+    }
+
+    .fv::after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 63%;
+        background-color: #222222;
+        z-index: -1;
+    }
+
+    .fv__inner{
+        height:83%;
+        width: 76%;
+        background-image: url(../img/heading-img.png);
+        background-position: center;
+        background-size: cover;
+        z-index: 1;
+        position: relative;
+    }
+
+    .copy{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(39%,-50%);
+
+        &--sub{
+            color: #fff;
+            @include rem(20);
+            font-weight: bold;
+            animation: SlideIn 2.5s;
+        }
+
+        &--main{
+            margin-bottom: 5px;
+            color: #FFFFFF;
+            @include rem(72);
+            font-weight: bold;
+            line-height: 1.19;
+            letter-spacing: 0.063; 
+            animation: SlideIn 2s;       
+        }
+
+    }
+
+    @keyframes SlideIn {
+        0% {
+          opacity: 0;/*初期状態では透明に*/
+          transform: translateX(100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+/*visionセクション*/
+    .vision{
+        padding:120px 0;
+
+        &-inner{
+            padding-left: 276px;
+        }
+
+        &__copy {
+            margin: 30px 0;
+
+           p{
+            @include rem(24);
+            font-weight: bold;
+            color: #333333;
+           }                       
+         }
+
+         &__text{
+
+             P{
+            line-height: 2;
+            }
+         }
+    }
+
+    
+
+/*messageセクション*/
+    .message {
+
+       /*absoluteにより、img要素が浮いているため、inner要素を下げた分加味*/
+       /*144+120*/
+           padding-bottom: 264px;
+       
+        &__inner{
+           
+            width: 770px;
+            padding: 120px 185px 90px;
+            /*padding使用による幅の膨張を抑える*/
+            box-sizing: border-box;
+            margin-left: auto;
+           position: relative;
+           top: 144px;
+            
+        }   
+
+        &__text{
+                       
+            margin-top: 30px;
+            p{
+                line-height: 2;
+            }
+        }
+    }
+
+    .message__wrapper{
+        position: relative;
+    }
+    
+        .ceo-image{
+            max-width: 420px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;          
+        }
+
+        .company h2{
+            padding-bottom: 30px;
+            border-bottom: 1px solid #dddddd;
+        }
+    
+
+/*companyセクション*/
+    .company__list--item{
+        display: flex;
+        padding: 20px 0;
+        border-bottom: 1px solid #DDDDDD;
+        max-width: 800px;
+        margin-left: auto;
+
+        dt{
+            font-weight: bold;
+            /*余白を含めたdt要素の幅を設定する事でddの頭を揃える*/
+            flex-basis: 144px;
+        }        
+    }
+
+    .map{
+        margin:40px 0 120px;
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 32.7%;
+
+        iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    footer{
+        background-color:#525252;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+
+        small{
+            @include rem(10)
+            color: #FFFFFF;
+        }
+    }
+
+    @media screen and (max-width:1024px){
+
+
+        .container{
+            width: 708px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+    
+        header{
+            h1{
+               
+            }
+    
+            h1{
+                position: fixed;
+                top: 33.8px;
+                
+                width: 189px;
+            }
+        
+            .burger--btn {
+               
+                top: 37px;
+                
+            }
+        }
+
+        .copy{
+
+            transform: translate(27%,50%);
+            &--main{
+                @include rem(52);
+            }
+
+            &--sub{
+                @include rem(16);
+            }
+        }
+
+        .vision{
+            &-inner{
+                padding-left: 120px;
+            }
+        }
+
+        .message{
+            &__inner{
+                width: 494px;
+                padding: 109px 39px 78px 40px;
+
+            }
+        }
+
+        .ceo-image{
+            width: 320px;
+        }
+    }
+
+
+    @media screen and (max-width:375px){
+        body{
+            @include rem(14);
+        }
+    
+        .container{
+            width: 345px;
+            padding: 0 5px;
+            margin: 0 auto;
+        }
+
+        .vision{
+            &-inner{
+                padding-left: 0;
+            }
+        }
+
+
+        .message{
+            &__inner{
+                width: 345px;
+            }
+        }
+
+        .map{
+            height: 400px;
+        }
+    }
